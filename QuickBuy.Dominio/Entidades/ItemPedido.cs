@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QuickBuy.Dominio.Entidades
 {
-    class ItemPedido : Entidade
+   public class ItemPedido : Entidade
     {   
         public int id { get; set; }
         public int ProdutoId { get; set; }

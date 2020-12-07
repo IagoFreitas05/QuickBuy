@@ -6,11 +6,12 @@ using System.Text;
 
 namespace QuickBuy.Dominio.Entidades
 {
-    class Pedido : Entidade
+    public class Pedido : Entidade
     {
         public int Id { get; set; }
-        public DateTime Data {get;set;}
+        public DateTime DataPedido {get;set;}
         public int UsuarioId { get; set; }
+        public virtual Usuario Usuario { get; set; }
         public DateTime DataPrevisaoEntrega { get; set; }
         public string CEP { get; set; }
         public string Estado { get; set; }
@@ -23,6 +24,7 @@ namespace QuickBuy.Dominio.Entidades
         /// <summary>
         /// Pode ter 1 pedido ou muitos pedido
         /// </summary>
+       
         public ICollection<ItemPedido> ItensPedido { get; set; }
 
         public override void Validate()
