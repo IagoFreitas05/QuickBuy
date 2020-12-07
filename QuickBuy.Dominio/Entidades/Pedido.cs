@@ -18,14 +18,14 @@ namespace QuickBuy.Dominio.Entidades
         public string Cidade { get; set; }
         public string EnderecoCompleto { get; set; }
         public int NumeroEndereco { get; set; }
-        public FormaPagamento FormaPagamento { get; set; }
+        public virtual FormaPagamento FormaPagamento { get; set; }
         public int FormaPagamentoId { get; set; }
 
         /// <summary>
         /// Pode ter 1 pedido ou muitos pedido
         /// </summary>
        
-        public ICollection<ItemPedido> ItensPedido { get; set; }
+        public  virtual ICollection<ItemPedido> ItensPedido { get; set; }
 
         public override void Validate()
         {

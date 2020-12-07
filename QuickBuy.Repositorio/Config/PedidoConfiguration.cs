@@ -40,7 +40,7 @@ namespace QuickBuy.Repositorio.Config
                 .IsRequired();
 
             builder
-                .HasOne(p => p.Usuario);
+                .HasOne(p => p.FormaPagamento);
         }
     }
 }
