@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace QuickBuy.Web.Controllers
 {
+    [EnableCors("AllowAnyOrigin")]
     [Route("api/[controller]")]
     public class SampleDataController : Controller
     {

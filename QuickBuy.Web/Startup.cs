@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -41,11 +42,18 @@ namespace QuickBuy.Web
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddCors();
+            services.Configure<MvcOptions>(options => {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("AllowAnyOrigin"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseCors(option => option.AllowAnyOrigin()); ;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -78,8 +86,7 @@ namespace QuickBuy.Web
                 if (env.IsDevelopment())
                 {
                     spa.UseAngularCliServer(npmScript: "start");
-                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200/");
-                    
+                    //spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }
