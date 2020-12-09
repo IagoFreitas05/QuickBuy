@@ -18,7 +18,7 @@
            required
            email />
 
-    
+
 
     <label for="inputSenha" class="sr-only">senha</label>
     <input type="password"
@@ -34,8 +34,16 @@
            #senha="ngModel"
            required />
 
-    <button class="btn btn-light btn-block border-button-styled text-secondary" (click)="entrar()" type="submit">acessar</button>
+    <button class="btn btn-success btn-block  text-white" (click)="entrar()" type="submit" [disabled]="ativar_spinner">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativar_spinner"></span>
+      <span *ngIf="ativar_spinner">acessando...</span>
 
+      <span *ngIf="!ativar_spinner">acessar</span>
+    </button>
+      <div class="alert alert-danger mt-2" *ngIf="mensagem">
+        {{mensagem}}
+      </div>
+      <a class="text-left" [routerLink]='["/novo-usuario"]' >criar minha conta</a>
     <img [src]="image" alt="Alternate Text" class="img-fluid" />
   </form>
 </div>

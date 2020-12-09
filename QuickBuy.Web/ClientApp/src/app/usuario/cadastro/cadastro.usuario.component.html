@@ -1,0 +1,78 @@
+<div class="text-center">
+  <form action="/" method="post" class="form-signin">
+    <h1 class="h4 login">cadastre-se,  é só click e buy!</h1>
+    <br />
+
+    <label for="inputNome" class="sr-only">qual seu nome?</label>
+    <input type="text"
+           name="nome"
+           id="inputNome"
+           placeholder="nome"
+           class="form-control mb-2"
+           [ngClass]="{
+             'is-invalid': nome.invalid && (nome.dirty || nome.touched ),
+             'is-valid' : nome.valid && (nome.dirty || nome.touched )
+           }"
+           [(ngModel)]="usuario.nome"
+           #nome="ngModel"
+           required />
+
+    <input type="text"
+           name="sobrenome"
+           id="inputSobrenome"
+           placeholder="sobrenome"
+           class="form-control mb-2"
+           [ngClass]="{
+             'is-invalid': sobreNome.invalid && (sobreNome.dirty || sobreNome.touched ),
+             'is-valid' : sobreNome.valid && (sobreNome.dirty || sobreNome.touched )
+           }"
+           [(ngModel)]="usuario.sobreNome"
+           #sobreNome="ngModel"
+           required />
+
+    <label for="inputEmail" class="sr-only">email</label>
+    <input type="email"
+           id="inputEmail"
+           name="name"
+           placeholder="email"
+           class="form-control mb-2"
+           [ngClass]="{
+             'is-invalid': email.invalid && (email.dirty || email.touched ),
+             'is-valid' : email.valid && (email.dirty || email.touched )
+           }"
+           [(ngModel)]="usuario.email"
+           #email="ngModel"
+           required
+           email />
+
+    <label for="inputSenha" class="sr-only">senha</label>
+    <input type="password"
+           name="senha"
+           placeholder="senha"
+           id="inputSenha"
+           class="form-control mb-2"
+           [ngClass]="{
+             'is-invalid': senha.invalid && (senha.dirty || senha.touched ),
+             'is-valid' : senha.valid && (senha.dirty || senha.touched )
+           }"
+           [(ngModel)]="usuario.senha"
+           #senha="ngModel"
+           required />
+
+    <button class="btn btn-success btn-block  text-white" (click)="cadastrar()" type="submit" [disabled]="ativar_spinner">
+      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="ativar_spinner"></span>
+      <span *ngIf="ativar_spinner">acessando...</span>
+
+      <span *ngIf="!ativar_spinner">começar as compras!</span>
+    </button>
+    <div class="alert alert-danger mt-2" *ngIf="mensagem">
+      {{mensagem}}
+    </div>
+    <div class="alert alert-success mt-2" *ngIf="usuarioCadastrado">
+      usuário cadastrado com sucesso!
+      <a class="alert-link" [routerLink]='["/entrar"]'>clique aqui</a> para entrar no sistema com a sua conta
+    </div>
+  </form>
+</div>
+
+

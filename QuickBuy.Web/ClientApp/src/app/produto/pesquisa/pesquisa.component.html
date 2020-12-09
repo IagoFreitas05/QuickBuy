@@ -1,0 +1,31 @@
+<h1 class="h4 titulo" *ngIf="!produtos">pesquisa de produtos</h1>
+
+<button class="btn btn-primary mb-2" (click)="adicionarProduto()">Adicionar Produto</button>
+
+<div class="table-responsive" *ngIf="produtos" >
+  <table class="table table-display table-hover">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Descricao</th>
+        <th>Preço</th>
+        <th>Imagem</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of produtos">
+        <td>{{p.nome}}</td>
+        <td>{{p.descricao}}</td>
+        <td>R$ {{p.preco}}</td>
+        <td ><img  src="../../../../../arquivos/{{p.nomeArquivo}}" class="img-fluid img-thumbnail" width="120" height="120" alt="Alternate Text" /></td>
+        <td>
+          <button class="btn btn-outline-success btn-sm" (click)="editarProduto(p)">editar</button>
+          
+        </td>
+        <td><button class="btn btn-outline-danger btn-sm" (click)="deletarProduto(p)">deletar</button></td>
+      </tr>  
+    </tbody>
+  </table>
+</div>

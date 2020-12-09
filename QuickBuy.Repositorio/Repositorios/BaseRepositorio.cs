@@ -22,7 +22,7 @@ namespace QuickBuy.Repositorio.Repositorios
             QuickBuyContexto.SaveChanges();
         }
 
-        public void atualizar(TEntity entity)
+        public void Atualizar(TEntity entity)
         {
             QuickBuyContexto.Set<TEntity>().Update(entity);
             QuickBuyContexto.SaveChanges();

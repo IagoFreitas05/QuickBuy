@@ -14,11 +14,15 @@ export class LoginComponent implements OnInit
   public image = '../../assets/quickbuy.png';
   public usuario: Usuario;
   public returnUrl: string;
+  public mensagem: string;
+  private ativar_spinner: boolean;
 
   constructor(
     private router: Router,
     private activateRouter: ActivatedRoute,
-    private usuarioServico: UsuarioServico
+    private usuarioServico: UsuarioServico,
+    
+   
   ){
       
   }
@@ -31,13 +35,26 @@ export class LoginComponent implements OnInit
 
   entrar(): void
   {
+    this.ativar_spinner = true;
     this.usuarioServico.verificarUsuario(this.usuario)
       .subscribe(
-        $data => {
-          this.router.navigate([this.returnUrl]);
+        usuario_json =>
+        {
+          this.ativar_spinner = false;
+          this.usuarioServico.usuario = usuario_json;
+          if (this.returnUrl == null)
+          {
+            this.router.navigate(['/']);
+          }
+          else
+          {
+            this.router.navigate([this.returnUrl]);
+          }
         },
-        err => {
-
+        err =>
+        {
+          this.ativar_spinner = false;
+          this.mensagem = err.error;
         }
       );
   }
